@@ -6,9 +6,11 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         n = len(nums)
-        cur_max = cur_min = nums[0]
-        ans = 0
-        for i in range(1, n):
+        cur_max = cur_min = 1
+        if n == 1:
+            return nums[0]
+        ans = -100000000000
+        for i in range(n):
             compares = [cur_max * nums[i], cur_min * nums[i], nums[i]]
             cur_max, cur_min = max(compares), min(compares)
             ans = max(ans, cur_max)
