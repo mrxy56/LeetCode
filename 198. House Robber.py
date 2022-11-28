@@ -1,13 +1,19 @@
-# Each day we have two choices, rob or not rob.
+# 1. Pay attention that j can be any number with at least 2 differences with i.
+# 2. Edge cases.
 class Solution:
     def rob(self, nums: List[int]) -> int:
         n = len(nums)
+        dp = [0 for i in range(n)]
         if n == 1:
             return nums[0]
-        dp = [0 for i in range(n + 1)]
-        dp[1] = nums[0]
-        dp[2] = max(nums[0], nums[1])
-        for i in range(3, n + 1):
-            dp[i] = max(dp[i - 2] + nums[i - 1], dp[i - 1])
-        return dp[n]
-            
+        if n == 2:
+            return max(nums[0], nums[1])
+        for i in range(n):
+            dp[i] = nums[i]
+        for i in range(2, n):
+            for j in range(0, i - 1):
+                dp[i] = max(dp[i], dp[j] + nums[i])
+        ans = 0
+        for i in range(n):
+            ans = max(ans, dp[i])
+        return ans
