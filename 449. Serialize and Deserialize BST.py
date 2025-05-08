@@ -5,7 +5,7 @@
 #         self.left = None
 #         self.right = None
 
-# 1. Binary search tree's inorder is determined so only consider preorder or postorder.
+# 1. Binary search tree's inorder is determined so only consider preorder/postorder.
 class Codec:
 
     def serialize(self, root: Optional[TreeNode]) -> str:
